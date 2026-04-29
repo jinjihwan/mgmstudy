@@ -1,0 +1,2068 @@
+<!DOCTYPE html><html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>매일공부매니저 상세페이지</title>
+  <style>
+    :root {
+      --card: #ffffff;
+      --text: #1f2937;
+      --sub: #4b5563;
+      --line: #e5e7eb;
+      --green: #a3d65c;
+      --green-dark: #6fa62f;
+      --yellow: #ffd94d;
+      --accent: #eff8df;
+      --danger: #c2410c;
+      --shadow: 0 18px 40px rgba(31, 41, 55, 0.08);
+      --max: 720px;
+    }* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #f9fcf3 0%, #ffffff 24%, #f8fbf2 100%);
+  line-height: 1.6;
+  word-break: keep-all;
+  padding-bottom: 110px;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  background: transparent;
+  overflow: hidden;
+}
+
+.section {
+  padding: 26px 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  border: 1px solid rgba(229,231,235,0.95);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero {
+  padding: 20px 16px 14px;
+}
+
+.hero-card {
+  padding: 28px 22px;
+  background:
+    radial-gradient(circle at top left, rgba(163,214,92,0.18), transparent 34%),
+    radial-gradient(circle at top right, rgba(255,217,77,0.14), transparent 24%),
+    #ffffff;
+}
+
+h1, h2, h3, p { margin: 0; }
+
+.hero h1 {
+  font-size: 31px;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+  text-align: center;
+}
+
+.highlight {
+  background: linear-gradient(transparent 60%, #edf8bf 60%);
+  font-weight: 900;
+}
+
+.hero-sub {
+  margin-top: 16px;
+  font-size: 16px;
+  color: var(--sub);
+}
+
+.hero-note {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f6fbe9, #fffef5);
+  border: 1px solid #e5efc8;
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.btn-row {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 15px;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--green), #c4e97a);
+  color: #1d2a10;
+  box-shadow: 0 10px 24px rgba(163, 214, 92, 0.35);
+}
+
+
+
+.btn-secondary {
+  background: #fff;
+  border-color: #cfe7a0;
+  color: var(--green-dark);
+}
+
+.title {
+  font-size: 27px;
+  line-height: 1.34;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.desc {
+  font-size: 15px;
+  color: var(--sub);
+}
+
+.center { text-align: center; }
+
+.divider {
+  width: 56px;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--green), var(--yellow));
+  margin: 0 auto 20px;
+}
+
+.check-list,
+.system-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.item {
+  background: #fafdf4;
+  border: 1px solid #e6f1cf;
+  border-radius: 18px;
+  padding: 18px 16px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.item strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.feature-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.feature-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #f3f9e8, #fff8d9);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-dark);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-body {
+  padding: 18px 16px;
+}
+
+.feature-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--green-dark);
+  border: 1px solid #dcefc0;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.feature-title {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.feature-desc {
+  font-size: 15px;
+  color: var(--sub);
+}
+
+
+
+.warning {
+  margin-top: 22px;
+  border-radius: 22px;
+  padding: 24px 18px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  text-align: center;
+}
+
+.warning .mini {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--danger);
+  margin-bottom: 8px;
+}
+
+.warning .big {
+  font-size: 28px;
+  line-height: 1.35;
+  font-weight: 900;
+  color: #9a3412;
+  letter-spacing: -0.05em;
+}
+
+.warning .sub {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #9a3412;
+}
+
+.profile-card {
+  margin-top: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(163,214,92,0.18), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #f9fcf4 100%);
+  border: 1px solid #e5efcf;
+  border-radius: 24px;
+  padding: 28px 20px;
+  box-shadow: var(--shadow);
+}
+
+.profile-layout {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.profile-image-box {
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid #e5efcf;
+  background: linear-gradient(135deg, #f3f9e8, #fff8d9);
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-dark);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  padding: 18px;
+}
+
+.profile-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+.profile-title {
+  font-size: 25px;
+  line-height: 1.35;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+
+.profile-desc {
+  margin-top: 18px;
+  color: var(--sub);
+  font-size: 15px;
+}
+
+
+.cta-card {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,217,77,0.18), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(163,214,92,0.18), transparent 28%),
+    linear-gradient(180deg, #ffffff, #f9fcf4);
+  border-radius: 28px;
+  border: 1px solid #e5efcf;
+  box-shadow: var(--shadow);
+  padding: 30px 20px 76px;
+  text-align: center;
+}
+
+.cta-box {
+  margin-top: 22px;
+  background: #fff;
+  border: 1px solid #e6f1cf;
+  border-radius: 22px;
+  padding: 20px 16px;
+}
+
+.cta-box p {
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.cta-box p:last-child { margin-bottom: 0; }
+
+.sticky-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(229,231,235,0.95);
+}
+
+.sticky-inner {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+}
+
+.sticky-inner .btn {
+  min-height: 50px;
+  font-size: 14px;
+}
+
+@media (min-width: 721px) {
+  .section,
+  .hero { padding-left: 20px; padding-right: 20px; }
+  .btn-row { grid-template-columns: 1fr 1fr; }
+  .check-list,
+  .system-list { grid-template-columns: 1fr 1fr; }
+  .profile-layout { grid-template-columns: 220px 1fr; align-items: center; }
+}
+
+
+.review-slider-section {
+  margin-top: 22px;
+}
+
+.review-slider-header {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.review-slider-header h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+
+.review-slider-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.review-slider {
+  display: flex;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.review-slide {
+  min-width: 100%;
+  flex: 0 0 100%;
+}
+
+.review-label {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--green-dark);
+  
+}
+
+.review-slide img {
+  width: 100%;
+  display: block;
+  border-radius: 18px;
+  border: 1px solid #e5efcf;
+  box-shadow: var(--shadow);
+}
+
+.review-dots {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.review-dots .dot {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 999px;
+  background: #d1d5db;
+  padding: 0;
+  cursor: pointer;
+}
+
+.review-dots .dot.active {
+  width: 22px;
+  background: linear-gradient(135deg, var(--green), var(--yellow));
+}
+
+.review-count {
+  position: absolute;
+  top: 50px;
+  right: 12px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.hero {
+  padding-top: 0px;
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+
+.top-bar.hide {
+  transform: translateY(-100%);
+}
+
+.top-nav-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.top-nav-grid a {
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  color: var(--sub);
+}
+
+
+
+body {
+  padding-top: 90px;
+}
+
+
+.faq-list {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.faq-item {
+  background: #fafdf4;
+  border: 1px solid #e6f1cf;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.faq-item strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.faq-item p {
+  font-size: 14px;
+  color: var(--sub);
+}
+
+
+.footer-info {
+  border-top: 1px solid #e5e7eb;
+  padding: 16px 4px 0;  /* 좌우 여백 살짝 추가 */
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+.footer-info p {
+  margin: 4px 0;
+}
+
+.footer-info strong {
+  display: inline-block;
+  min-width: 110px; /* 정렬 맞추기 */
+}
+
+.footer-copy {
+  margin-top: 10px !important;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+
+.promo-popup {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: calc(100% - 32px);
+  max-width: 520px;
+  z-index: 999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.promo-popup.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.popup-inner {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px 18px 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  border: 1px solid #e5efc8;
+  text-align: center;
+}
+
+.popup-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--green-dark);
+  margin-bottom: 6px;
+}
+
+.popup-desc {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.popup-btn {
+  width: 100%;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 800;
+  font-size: 14px;
+  background: linear-gradient(135deg, var(--green), #c4e97a);
+  cursor: pointer;
+}
+
+.popup-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+
+
+.curriculum-card {
+  margin-top: 20px;
+  background: #fafdf4;
+  border: 1px solid #e6f1cf;
+  border-radius: 20px;
+  padding: 18px 14px;
+}
+
+
+
+.curriculum-group {
+  display: grid;
+  grid-template-columns: 46px 20px 1fr;
+}
+
+.curriculum-months {
+  display: flex;
+  flex-direction: column;
+}
+
+.curriculum-month {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.curriculum-line {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.curriculum-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #d4e4ae;
+  z-index: 0;
+}
+
+.curriculum-dot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.curriculum-dot::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9fbe55;
+}
+
+.curriculum-label-wrap {
+  display: flex;
+  align-items: stretch;
+  padding: 6px 0;
+}
+
+.curriculum-label {
+  width: 100%;
+  margin-left: 10px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f4f8ea;
+  border: 1px solid #dfe8c9;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.curriculum-label.summer {
+  background: #fff8e8;
+  border-color: #f3df9b;
+  color: #7a5a00;
+}
+
+.curriculum-label.winter {
+  background: #eef4ff;
+  border-color: #d8e5ff;
+  color: #26436d;
+}
+
+  
+  
+  .exam-plan-wrap {
+    margin-top: 22px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .exam-plan-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .exam-plan-head {
+    padding: 16px 18px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #1f2937;
+    border-bottom: 1px solid #eef2e7;
+  }
+
+  .exam-plan-head.top {
+    background: linear-gradient(180deg, #f6fbe9, #fffef5);
+    color: #000000;
+  }
+
+
+
+  .exam-plan-body {
+    padding: 16px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .exam-phase {
+    background: #fafdf4;
+    border: 1px solid #e6f1cf;
+    border-radius: 16px;
+    padding: 14px 14px;
+  }
+
+  .exam-phase-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .exam-phase-week {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 58px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--accent);
+    border: 1px solid #dcefc0;
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .exam-phase-name {
+    font-size: 14px;
+    font-weight: 900;
+    color: #1f2937;
+    letter-spacing: -0.02em;
+    text-align: right;
+    flex: 1;
+  }
+
+  .exam-phase-points {
+    display: grid;
+    gap: 6px;
+  }
+
+  .exam-phase-point {
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.55;
+    padding-left: 2px;
+  }
+
+  .exam-phase-point strong {
+    color: #1f2937;
+    font-weight: 800;
+  }
+
+
+
+  @media (min-width: 721px) {
+    .exam-plan-wrap {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  
+  .compare-card {
+  padding: 28px 20px;
+}
+
+.compare-head {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.compare-head-bad,
+.compare-head-good {
+  padding: 10px 12px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.compare-head-bad {
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+}
+
+.compare-head-good {
+  background: #f6fbe9;
+  color: var(--green-dark);
+  border: 1px solid #dcefc0;
+}
+
+.compare-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.compare-row-card {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.compare-cell {
+  min-height: 78px;
+  border-radius: 18px;
+  padding: 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 800;
+}
+
+.compare-cell.bad {
+  background: #fffaf7;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+}
+
+.compare-cell.good {
+  background: linear-gradient(180deg, #f6fbe9, #ffffff);
+  border: 1px solid #dcefc0;
+  color: #1f2937;
+  box-shadow: 0 10px 24px rgba(163, 214, 92, 0.14);
+}
+
+.compare-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-dark);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    
+    <div class="top-bar" id="topBar">
+  <div class="top-nav-grid">
+
+    <a href="#intro-manager">매공매 소개</a>
+    <a href="#process">진행방식</a>
+    <a href="#reviews">베스트 후기</a>
+    <a href="#teacher">선생님 소개</a>
+   
+    <a href="#curriculum">커리큘럼</a>
+    <a href="#apply">가격 및 신청</a>
+    <a href="#faq">FAQ</a>
+    <a href="#apply">무료체험</a>
+
+  </div>
+</div>
+    
+    <section class="hero">
+      <div class="card hero-card">
+        <h1>
+          도대체 왜?<br/>
+          소문난 학원을 다니고<br />
+          의대생 과외를 받아도<br/>
+          <span class="highlight">성적은 그대로</span>일까요?
+        </h1>
+        <p class="hero-sub">
+          수업을 듣기만 하고<br />
+          "스스로" 공부하지 않기 때문입니다.
+        </p>
+        <div class="hero-note">
+          과제 미제출시 퇴출 시스템으로<br />
+          스스로 공부하는 학생을 만드는 온라인학원, 매일공부매니저입니다.
+        </div>
+        <div class="btn-row">
+          <a href="#apply" class="btn btn-primary">일주일 무료체험 알아보기</a>
+        </div>
+      </div>
+    </section>
+    
+    
+<section class="section">
+  <div class="card" style="padding: 28px 20px; text-align:center;">
+
+    <p style="font-size:13px; font-weight:800; color:#6fa62f;">
+      매공매의 압도적인 성과
+    </p>
+
+<div style="margin-top:12px;">
+  <span style="
+    font-size:18px;
+    font-weight:800;
+    color:#4b5563;
+  ">
+    성적 상승률
+  </span>
+  <span style="
+    font-size:34px;
+    font-weight:900;
+    color:#ef4444;
+    margin-left:6px;
+  ">
+    92%
+  </span>
+</div>
+
+
+    <div style="
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+    ">
+
+      <div style="
+        padding:14px;
+        border-radius:14px;
+        background:#fafdf4;
+        border:1px solid #e6f1cf;
+      ">
+        <div style="font-size:12px; color:#6b7280; margin-bottom:4px;">
+          정○환 학생 · 고1
+        </div>
+        <div style="font-size:17px; font-weight:900;">
+          5등급 → 1등급
+        </div>
+        <div style="font-size:12px; color:#6b7280; margin-top:2px;">
+          2개월 수강
+        </div>
+      </div>
+
+      <div style="
+        padding:14px;
+        border-radius:14px;
+        background:#fafdf4;
+        border:1px solid #e6f1cf;
+      ">
+        <div style="font-size:12px; color:#6b7280; margin-bottom:4px;">
+          김○민 학생 · 중3
+        </div>
+        <div style="font-size:17px; font-weight:900;">
+          107등 → 전교 5등
+        </div>
+        <div style="font-size:12px; color:#6b7280; margin-top:2px;">
+          1학기 → 2학기
+        </div>
+      </div>
+
+      <div style="
+        padding:14px;
+        border-radius:14px;
+        background:#fafdf4;
+        border:1px solid #e6f1cf;
+      ">
+        <div style="font-size:12px; color:#6b7280; margin-bottom:4px;">
+          이○서 학생 · 고2
+        </div>
+        <div style="font-size:17px; font-weight:900;">
+          6등급 → 2등급
+        </div>
+        <div style="font-size:12px; color:#6b7280; margin-top:2px;">
+          1학기 → 2학기
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:10px; font-size:12px; color:#6b7280;">
+      * 2026.01 / 2개월 이상 수강한 성적등록생 기준
+    </p>
+
+    <div style="
+  margin-top:18px;
+  padding:16px;
+  border-radius:16px;
+  background:linear-gradient(180deg,#f6fbe9,#fffef5);
+  border:1px solid #e5efc8;
+  line-height:1.5;
+  text-align:center;
+">
+
+  <div style="
+    font-size:16px;
+    font-weight:900;
+  ">
+    특별한 학생이 아니라,<br/>
+    <span style="color:#6fa62f;">
+      매일 공부하게 만든 결과입니다.
+    </span>
+  </div>
+
+  <div style="
+    margin-top:10px;
+    font-size:13px;
+    color:#6b7280;
+    font-weight:600;
+  ">
+    더 다양한 사례는 아래 베스트 후기를 확인해보세요
+  </div>
+
+</div>
+
+  </div>
+</section>
+    
+    
+    
+    <section class="section" id="intro-manager">
+  <div class="card" style="padding: 28px 20px;">
+    <div class="divider"></div>
+    <h2 class="title center">
+      수업을 아무리 바꿔도<br />
+      <span class="highlight">성적이 그대로</span>인 이유?
+    </h2>
+    <p class="desc center">
+      
+    </p>
+    <div class="check-list">
+      <div class="item"><strong>❌️학원은 모두를 챙기지 않습니다❌️</strong>다수의 수준에 끌려갑니다. 즉, 틀린 문제는 넘어가고, 이해가 안돼도 넘어갑니다.</div>
+      <div class="item"><strong>✅️매일공부매니저는✅️</strong>선생님이 직접 매일 카톡 질의응답 및 숙제관리를 진행합니다.</div>
+      <div class="item"><strong>❌️수동적으로 공부합니다❌️</strong>시험장에선 직접 스스로 문제를 풀어야만합니다. 수업을 '듣기만' 했을때 부족한 부분을 연습해야합니다.</div>
+      
+      
+      <div class="item"><strong>✅️매일공부매니저는✅️</strong>매주 2회 수업을 진행하고,<br/> 제공한 과제의 이행도를 체크하며<br/> 학생의 능동적인 학습을 돕습니다.</div>
+    </div>
+
+
+<div class="review-slider-section">
+
+  <div class="review-slider-wrap">
+    <div class="review-slider">
+      <div class="review-slide">
+        <p class="review-label">한 달 만에 6등급 → 1등급</p>
+        <img src="images/review-1.jpg" alt="후기 1" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">과제 때문에 처음으로 꾸준히 공부했어요</p>
+        <img src="images/review-2.jpg" alt="후기 2" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">부모님도 먼저 변화를 느꼈습니다</p>
+        <img src="images/review-3.jpg" alt="후기 3" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">관리 없었으면 절대 못 했어요</p>
+        <img src="images/review-4.jpg" alt="후기 4" />
+      </div>
+    </div>
+  </div>
+
+  <div class="review-dots">
+    <button class="dot active" type="button" aria-label="1번 후기"></button>
+    <button class="dot" type="button" aria-label="2번 후기"></button>
+    <button class="dot" type="button" aria-label="3번 후기"></button>
+    <button class="dot" type="button" aria-label="4번 후기"></button>
+  </div>
+</div>
+
+</div>
+</section>
+
+
+
+
+<section class="section" id="process">
+  <div class="card" style="padding: 28px 20px;">
+    <div class="divider"></div>
+    <h2 class="title center">
+      매일공부매니저는<br />
+      <span class="highlight">스스로 공부를 하게</span> 만듭니다.
+    </h2>
+    
+      <div class="system-list">
+        <div class="feature-card">
+          <div class="feature-image">
+            <img src="images/feature-1.jpg" alt="주 2회 강의 제공 이미지" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-number">01</div>
+            <div class="feature-title">주 2회 강의 제공</div>
+            <div class="feature-desc">주 2회, 90분 수업을 진행하며 수업교재는 개념원리 RPM을 사용합니다. 자세한 개념, 상세하고 일관된 문제풀이 방식을 지향합니다. 무료체험 신청을 통해 만나보세요.</div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-image">
+            <img src="images/feature-2.jpg" alt="매일 숙제 관리 이미지" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-number">02</div>
+            <div class="feature-title">매일 숙제 관리</div>
+            <div class="feature-desc">학생 수준을 파악하여 학생마다 다른 분량의 숙제를 제공하며, 학생은 숙제를 이행한 후 사진을 찍어 제출합니다. 숙제교재는 수매씽을 사용합니다.</div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-image">
+            <img src="images/feature-3.jpg" alt="카카오톡 질의응답 이미지" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-number">03</div>
+            <div class="feature-title">카카오톡 질의응답</div>
+            <div class="feature-desc">학생이 해결하지 못하거나, 틀린 문제에 대하여 제가 직접 풀이한 영상을 제공하고, 이해가 되지 않았을 시 카톡으로 편하게 질의응답하며 모르는 개념을 빈틈없이 채웁니다.</div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-image">
+            <img src="images/feature-4.jpg" alt="주 1회 학습 리포트 문자 이미지" />
+          </div>
+          <div class="feature-body">
+            <div class="feature-number">04</div>
+            <div class="feature-title">주 1회 학습 리포트 문자</div>
+            <div class="feature-desc">매주 학생이 진행한 공부량과 수업 내용을 정리해 학부모님께 안내해드립니다.</div>
+          </div>
+        </div>
+      </div>
+
+      
+    
+
+    <div class="warning">
+      <div class="mini">또한</div>
+      <div class="big">3회 이상 과제 <br/>미제출 시<br />남은 수강료 환불 + 퇴출</div>
+      <div class="sub">
+        
+        이 시스템 도입 후, <br/>
+        숙제 제출률 60% -> 90% <br/>등급 향상률 0.8등급 -> 1.5등급
+      </div>
+    </div>
+  
+</section>
+
+
+<section class="section" id="compare-academy">
+  <div class="card compare-card">
+    <div class="divider"></div>
+
+    <h2 class="title center">
+      학원 vs 매공매 차이
+    </h2>
+
+
+
+    <div class="compare-head">
+      <div class="compare-head-bad">학원</div>
+      <div class="compare-head-good">매공매</div>
+    </div>
+
+    <div class="compare-list">
+      <div class="compare-row-card">
+        <div class="compare-cell bad">숙제 체크가<br />느슨합니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">매일 숙제를<br />확인합니다</div>
+      </div>
+
+      <div class="compare-row-card">
+        <div class="compare-cell bad">수업 이후<br />방치됩니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">매일 관리와<br />피드백이 있습니다</div>
+      </div>
+
+      <div class="compare-row-card">
+        <div class="compare-cell bad">안 해도<br />그대로 넘어갑니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">미이행 시<br />퇴출 시스템이 있습니다</div>
+      </div>
+
+      <div class="compare-row-card">
+        <div class="compare-cell bad">수업을 듣는<br />구조입니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">공부를 하게 만드는<br />구조입니다</div>
+      </div>
+    </div>
+
+    <br/> <br/>
+    <h3 class="title center">
+      과외 vs 매공매 차이
+    </h3>
+
+
+    <div class="compare-head">
+      <div class="compare-head-bad">과외</div>
+      <div class="compare-head-good">매공매</div>
+    </div>
+
+    <div class="compare-list">
+      <div class="compare-row-card">
+        <div class="compare-cell bad">수업 시간에만<br />관리됩니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">수업 없는 날도<br />매일 관리합니다</div>
+      </div>
+
+      <div class="compare-row-card">
+        <div class="compare-cell bad">숙제 확인이<br />불규칙합니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">매일 숙제 제출을<br />확인합니다</div>
+      </div>
+
+      <div class="compare-row-card">
+        <div class="compare-cell bad">질문은 보통<br />수업 때 해결합니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">카카오톡으로<br />수시 질의응답합니다</div>
+      </div>
+
+      <div class="compare-row-card">
+        <div class="compare-cell bad">학부모 안내가<br />선생님마다 다릅니다</div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-cell good">주 1회 학습 리포트를<br />제공합니다</div>
+      </div>
+    </div>
+
+    
+  </div>
+</section>
+
+
+<section class="section" id="reviews">
+  <div class="card" style="padding: 28px 20px;">
+    <div class="divider"></div>
+
+  
+  <div class="review-slider-section review-slider-section-full">
+    
+    
+  <div class="review-slider-header">
+    <h3>베스트 후기 모음</h3>
+  </div>
+  
+  <div class="review-slider-wrap">
+    <div class="review-slider">
+      <div class="review-slide">
+        <p class="review-label">후기 1</p>
+        <img src="images/review-1.jpg" alt="후기 1" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 2</p>
+        <img src="images/review-2.jpg" alt="후기 2" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 3</p>
+        <img src="images/review-3.jpg" alt="후기 3" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 4</p>
+        <img src="images/review-4.jpg" alt="후기 4" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 5</p>
+        <img src="images/review-5.jpg" alt="후기 5" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 6</p>
+        <img src="images/review-6.jpg" alt="후기 6" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 7</p>
+        <img src="images/review-7.jpg" alt="후기 7" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 8</p>
+        <img src="images/review-8.jpg" alt="후기 8" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 9</p>
+        <img src="images/review-9.jpg" alt="후기 9" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 10</p>
+        <img src="images/review-10.jpg" alt="후기 10" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 11</p>
+        <img src="images/review-11.jpg" alt="후기 11" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 12</p>
+        <img src="images/review-12.jpg" alt="후기 12" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 13</p>
+        <img src="images/review-13.jpg" alt="후기 13" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 14</p>
+        <img src="images/review-14.jpg" alt="후기 14" />
+      </div>
+
+      <div class="review-slide">
+        <p class="review-label">후기 15</p>
+        <img src="images/review-15.jpg" alt="후기 15" />
+      </div>
+    </div>
+    <div class="review-count" id="reviewCount">1 / 15</div>
+  </div>
+
+  <div class="review-dots"></div>
+  
+</div>
+  
+ </div> 
+</section>
+
+
+<section class="section" id="teacher">
+  <div class="profile-card">
+    <div class="divider" style="margin-bottom:18px;"></div>
+    <h2 class="title center">진지환 선생님</h2>
+
+    <div class="profile-layout">
+      <div>
+        <div class="profile-image-box">
+          <img src="images/teacher-profile.jpg" alt="진지환 선생님 프로필 이미지" />
+        </div>
+        
+      </div>
+
+      <div>
+        <div class="profile-title">
+          7등급에서<br />
+          과학고 조기졸업까지.<br />
+          포스텍 물리학과 출신 선생님
+        </div>
+        <p class="profile-desc">
+          고1 첫 수학 시험(3월 모의고사), 7등급이었습니다.<br/>
+          주위에서 소문난 학원을 다녀도, 의대생의 과외를 받아도 성적이 오르진 않았습니다. 온갖 시행착오를 겪고, 결국 과학고에서 수학 11등, 평균 25등을 달성하며 조기졸업을 이뤄낼 수 있었습니다.<br /><br />
+          중요한건 학원의 수업, 맞춤 과외가 아니었습니다. 직접 수학문제를 푸는 과정이 있어야 성적은 오릅니다.<br /><br />
+          그래서 만들었습니다. 매일공부매니저는 단순한 수업이 아니라, 학생이 실제로 실행하게 만드는 관리 시스템 중심으로 운영됩니다.<br /><br/>
+          학생과 가까운 세대의 선생님으로, 현재 학교 현장과 학생들의 학습 환경을 이해하며 수업 내,외적으로 최선의 방식으로 관리합니다.
+        </p>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="curriculum">
+  <div class="card" style="padding: 28px 20px;">
+    <div class="divider"></div>
+
+    <h2 class="title center">
+      커리큘럼 안내
+    </h2>
+
+    <p class="desc center" style="margin-bottom: 28px;">
+      학생의 학사일정을 파악하여 디테일한 커리큘럼은 수정됩니다.
+    </p>
+
+    <div class="curriculum-card">
+      <div class="curriculum-group">
+        <div class="curriculum-months">
+          <div class="curriculum-month">3월</div>
+          <div class="curriculum-month">4월</div>
+        </div>
+        <div class="curriculum-line">
+          <div class="curriculum-dot"></div>
+          <div class="curriculum-dot"></div>
+        </div>
+        <div class="curriculum-label-wrap">
+          <div class="curriculum-label">중간 대비 (8주)</div>
+        </div>
+      </div>
+
+      <div class="curriculum-group">
+        <div class="curriculum-months">
+          <div class="curriculum-month">5월</div>
+          <div class="curriculum-month">6월</div>
+        </div>
+        <div class="curriculum-line">
+          <div class="curriculum-dot"></div>
+          <div class="curriculum-dot"></div>
+        </div>
+        <div class="curriculum-label-wrap">
+          <div class="curriculum-label">기말 대비 (8주)</div>
+        </div>
+      </div>
+
+      <div class="curriculum-group">
+        <div class="curriculum-months">
+          <div class="curriculum-month">7월</div>
+        </div>
+        <div class="curriculum-line">
+          <div class="curriculum-dot"></div>
+        </div>
+        <div class="curriculum-label-wrap">
+          <div class="curriculum-label summer">여름 방학 특강</div>
+        </div>
+      </div>
+
+      <div class="curriculum-group">
+        <div class="curriculum-months">
+          <div class="curriculum-month">8월</div>
+          <div class="curriculum-month">9월</div>
+        </div>
+        <div class="curriculum-line">
+          <div class="curriculum-dot"></div>
+          <div class="curriculum-dot"></div>
+        </div>
+        <div class="curriculum-label-wrap">
+          <div class="curriculum-label">중간 대비 (8주)</div>
+        </div>
+      </div>
+
+      <div class="curriculum-group">
+        <div class="curriculum-months">
+          <div class="curriculum-month">10월</div>
+          <div class="curriculum-month">11월</div>
+        </div>
+        <div class="curriculum-line">
+          <div class="curriculum-dot"></div>
+          <div class="curriculum-dot"></div>
+        </div>
+        <div class="curriculum-label-wrap">
+          <div class="curriculum-label">기말 대비 (8주)</div>
+        </div>
+      </div>
+
+      <div class="curriculum-group">
+        <div class="curriculum-months">
+          <div class="curriculum-month">12월</div>
+          <div class="curriculum-month">1월</div>
+          <div class="curriculum-month">2월</div>
+        </div>
+        <div class="curriculum-line">
+          <div class="curriculum-dot"></div>
+          <div class="curriculum-dot"></div>
+          <div class="curriculum-dot"></div>
+        </div>
+        <div class="curriculum-label-wrap">
+          <div class="curriculum-label winter">겨울 방학 특강</div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="exam-plan-wrap">
+      <div class="exam-plan-card">
+        <div class="exam-plan-head top">중간, 기말 대비 8주 커리큘럼 소개</div>
+        <div class="exam-plan-body">
+          <div class="exam-phase">
+            <div class="exam-phase-title">
+              <span class="exam-phase-week">1~5주차</span>
+              <div class="exam-phase-name">기본 커리큘럼(공통)</div>
+            </div>
+            <div class="exam-phase-points">
+              <div class="exam-phase-point">• <strong>개념 정리</strong></div>
+              <div class="exam-phase-point">• <strong>필수 유형 완성</strong></div>
+              <div class="exam-phase-point">• 시험 범위 전체 흐름 정리</div>
+            </div>
+          </div>
+
+          <div class="exam-phase">
+            <div class="exam-phase-title">
+              <span class="exam-phase-week">6~7주차</span>
+              <div class="exam-phase-name">중상위권 커리큘럼</div>
+            </div>
+            <div class="exam-phase-points">
+              <div class="exam-phase-point">• <strong>킬러 / 준킬러 대비</strong></div>
+              <div class="exam-phase-point">• 고난도 변형 문제 적응</div>
+              <div class="exam-phase-point">• 상위권 점수 완성</div>
+            </div>
+          </div>
+          
+          
+          <div class="exam-phase">
+            <div class="exam-phase-title">
+              <span class="exam-phase-week">6~7주차</span>
+              <div class="exam-phase-name">중하위권 커리큘럼</div>
+            </div>
+            <div class="exam-phase-points">
+              <div class="exam-phase-point">• <strong>기본 개념 총정리 및 복습</strong></div>
+              <div class="exam-phase-point">• 기본 유형 반복 훈련</div>
+              <div class="exam-phase-point">• 자주 틀리는 개념 재점검</div>
+            </div>
+          </div>
+          
+
+          <div class="exam-phase">
+            <div class="exam-phase-title">
+              <span class="exam-phase-week">8주차</span>
+              <div class="exam-phase-name">실전연습 모의시험(공통)</div>
+            </div>
+            <div class="exam-phase-points">
+              <div class="exam-phase-point">• <strong>실전 모의시험 문제풀이</strong></div>
+              <div class="exam-phase-point">• 시간 관리 점검</div>
+              <div class="exam-phase-point">• 실수 정리 및 최종 마무리</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+      <strong>Q. 수업교재는 무엇으로 진행하나요?</strong>
+      <p>개념원리 RPM으로 수업을 진행하며, 숙제는 수매씽으로 제공합니다. 6-7주차에 진행하는 중상위권 커리큘럼은 일등급수학으로 진행합니다. *교재비 별도</p>
+    </div>
+      
+
+    <div class="faq-item">
+      <strong>Q. 처음 신청하는데 시험까지 4주밖에 안남았어요</strong>
+      <p>시험까지 8주가 남지 않았다면 일정에 따라 좀 더 빠르게 진도를 나가는 커리큘럼, 실전연습 모의시험만 대비하는 커리큘럼 등 상담 후 필요에 따라 맞춤 진행됩니다.</p>
+    </div>
+    
+    <div class="faq-item">
+      <strong>Q. 커리큘럼이 잘 이해가 되지 않아요</strong>
+      <p>아래에 있는 무료상담 신청 부탁드립니다!</p>
+    </div>
+    
+    <div class="faq-item">
+      <strong>Q. 방학때는 어떤 수업을 진행하나요?</strong>
+      <p>다음학기 수업 진도를 나갑니다. 학교마다 방학 일정이 다르기에 줌을 이용한 라이브 수업을 진행하기도 합니다.</p>
+    </div>
+    
+    <div class="faq-item">
+      <strong>Q. 선행준비, 정시(수능)준비는 어떻게 할 수 있나요?</strong>
+      <p>학년에 앞서는 정규 커리큘럼을 진행하면서 선행학습이 가능하며, 정규 커리큘럼을 통해 수능대비 또한 자연스럽게 대비할 수 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="apply">
+  <div class="cta-card">
+    <div class="divider"></div>
+
+    <h2 class="title" style="margin-bottom:12px;">
+      이번 시험도 똑같이 끝내고 싶지 않다면,<br />
+      <span class="highlight">지금 공부 방식부터 바꿔야 합니다.</span>
+    </h2>
+
+    <p class="desc" style="font-size:16px;">
+      수업을 듣는 것만으로는 성적이 오르지 않습니다.<br />
+      직접 공부하고, 끝까지 해내는 관리 시스템이 있어야 결과가 달라집니다.
+    </p>
+    
+    
+    <div style="
+  margin-top:18px;
+  padding:18px 16px;
+  border-radius:18px;
+  background:#fafdf4;
+  border:1px solid #e6f1cf;
+  text-align:center;
+">
+
+  <p style="
+    font-size:13px;
+    font-weight:800;
+    color:#6fa62f;
+    margin-bottom:6px;
+  ">
+    수강료 안내 (4주 / 8회 기준)
+  </p>
+
+  <p style="
+    font-size:20px;
+    font-weight:900;
+    line-height:1.5;
+    color:#1f2937;
+  ">
+    중학생 월 25만원<br/>
+    고등학생 월 30만원
+  </p>
+
+</div>
+
+<div style="margin-top:20px; display:grid; gap:14px;">
+
+  <div style="
+    padding:18px 16px;
+    border-radius:18px;
+    background:#f6fbe9;
+    border:1px solid #dcefc0;
+    text-align:left;
+  ">
+    <p style="font-size:14px; font-weight:900; color:#6fa62f; margin-bottom:10px;">
+      ✔ 이런 학생에게 추천합니다
+    </p>
+
+    <p style="font-size:14px; line-height:1.6;">
+      • 공부를 해야 하는 건 알지만 <strong>혼자서는 못하는 학생</strong><br/>
+      • 학원, 인강을 바꿔도 <strong>성적이 그대로인 학생</strong><br/>
+      • 누가 관리해주면 <strong>끝까지 해낼 수 있는 학생</strong>
+    </p>
+  </div>
+
+  <div style="
+    padding:18px 16px;
+    border-radius:18px;
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    text-align:left;
+  ">
+    <p style="font-size:14px; font-weight:900; color:#c2410c; margin-bottom:10px;">
+      ✖ 이런 학생은 신청하지 마세요.
+    </p>
+
+    <p style="font-size:14px; line-height:1.6;">
+      • 숙제를 하지 않아도 <strong>괜찮다고 생각하는 학생</strong><br/>
+      • 누가 관리하는 것을 <strong>불편하게 느끼는 학생</strong><br/>
+      • 단순히 수업만 듣고 싶은 학생
+    </p>
+  </div>
+
+</div>
+
+
+    <div class="cta-box">
+      <p style="font-size:20px; font-weight:800; color:#9a3412;">
+  <span style="background: linear-gradient(transparent 60%, #ffd94d 60%);">
+    기말고사 대비 얼리버드 혜택
+  </span>
+</p>
+
+      <p>
+        말로만 들어서는 이 시스템이 나에게 맞는지 알기 어렵습니다.<br />
+        그래서 <strong>일주일 무료체험</strong>을 제공합니다.
+      </p>
+
+      <p>
+        무료체험 동안<br />
+        ✔ 2회 수업<br />
+        ✔ 숙제 제공<br />
+        ✔ 매일 숙제 체크<br />
+        ✔ 카카오톡 질의응답<br />
+        ✔ 학습 관리 시스템<br /><br />
+        실제 수업과 동일하게 진행하여 바로 정식수업으로 이어질 수 있습니다.
+      </p>
+
+
+    </div>
+
+    <p class="desc center" style="margin-top: 16px; font-weight: 800; color: #9a3412;">
+      관리 가능한 인원만 모집하기 때문에 조기 마감될 수 있습니다.
+    </p>
+    
+  
+    <div class="btn-row" style="margin-top: 24px;">
+      <a href="javascript:void(0)" class="btn btn-primary" onclick="openFormModal()">
+        일주일 무료체험 신청하기
+      </a>
+      <a href="javascript:void(0)" class="btn btn-secondary" onclick="openFormModal()">
+  무료상담 신청하기
+</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="card" style="padding:28px 20px;">
+    <div class="divider"></div>
+
+    <h2 class="title center">자주 묻는 질문 FAQ</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <strong>Q. 어떤 학생에게 가장 효과적인가요?</strong>
+        <p>• 공부를 해야 하는 건 알지만 혼자서는 못하는 학생 <br/>
+• 학원, 과외를 바꿔도 성적이 그대로인 학생<br/>
+• 누가 관리해주면 끝까지 해낼 수 있는 학생<br/>
+이런 경우 가장 큰 효과를 보입니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>Q. 성적이 낮은 학생도 가능한가요?</strong>
+        <p>가능합니다.<br/>
+오히려 공부 습관이 없는 학생일수록 효과가 크게 나타납니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>Q. 온라인 수업이면 집중력이 떨어지지 않을까요?</strong>
+        <p>아닙니다.<br/>수업시간 진행한 내용을 필기하는 과제가 주어지기 때문에 학원, 과외보다 더 집중하며 들어야 합니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>Q. 수업에 참여하는 시기에 따라 수업이 다르게 진행되나요?</strong>
+        <p>당연합니다. 시험기간이 얼마 남지 않은 학생을 대상으로 첫 수업을 진행하면 빠른 진도를 나가는 등 필요에 맞게 조정합니다. 구체적인건 상담을 통해 조정됩니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>Q. 수업은 어떤 요일에 진행되나요?</strong>
+        <p>상담을 통해 다른 과목의 학원일정 등을 고려해 편한 요일을 정합니다.</p>
+      </div>
+      
+      <div class="faq-item">
+        <strong>Q. 다른 수학 수업과 병행할 수 있나요?</strong>
+        <p>가능합니다. <br/>우선 무료체험을 통해 학생에게 맞는지 확인해보세요!</p>
+      </div>
+      
+      
+      <div class="faq-item">
+        <strong>Q. 교재는 구매를 해야하나요?</strong>
+        <p>네. 한 학기당 개념원리 RPM, 수매씽 두 교재는 구매해야하며, 상위권을 노리는 학생은 일등급수학을 추가로 구매해야 합니다.<br/> 단, 무료체험 중에는 이미지파일을 제공하니 그것을 이용하시면 됩니다.</p>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 10px;">
+  <div class="footer-info">
+    <p><strong>상호명</strong> : 매일공부매니저</p>
+    <p><strong>대표자</strong> : 진지환</p>
+    <p><strong>주소</strong> : 경북 포항시 남구 청암로77 포항공과대학교 학부기숙사 8동 (37673)</p>
+    <p><strong>이메일1</strong> : jinjihwan@postech.ac.kr</p>
+    <p><strong>이메일2</strong> : maegongmae@gmail.com</p>
+    <p><strong>연락처(문자)</strong> : 010-7113-3688</p>
+    
+    <!--
+    <p><strong>운영시간</strong> : 평일 09:00 - 22:00</p>
+    <p><strong>수강료</strong> : 중학생 월 25만원 / 고등학생 월 30만원</p>
+    <p><strong>환불규정</strong> : 환불은 학원 운영 규정 및 관련 법령에 따라 진행됩니다.</p>
+    -->
+    
+    <p class="footer-copy">Copyright © 2024 매일공부매니저. All Rights Reserved.</p>
+  </div>
+</section>
+
+
+
+  </div>  <div class="sticky-bar">
+    <div class="sticky-inner">
+      
+      <a href="javascript:void(0)" class="btn btn-secondary" onclick="openFormModal()">무료 상담 신청 </a>
+      <a href="#apply" class="btn btn-primary">무료체험 알아보기</a>
+    </div>
+  </div>
+  
+  <div class="promo-popup" id="promoPopup">
+  <div class="popup-inner">
+    <p class="popup-title">기말고사 대비 얼리버드 진행 중</p>
+    <p class="popup-desc">
+      
+      <strong>일주일 무료체험 제공</strong>
+    </p>
+    <button class="popup-btn" onclick="location.href='#apply'">
+      무료체험 시작하기
+    </button>
+    <button class="popup-close" >×</button>
+  </div>
+</div>
+
+
+  
+  
+<script>
+  (function () {
+    const sliderSections = document.querySelectorAll('.review-slider-section');
+
+    sliderSections.forEach((section) => {
+      const slider = section.querySelector('.review-slider');
+      const slides = section.querySelectorAll('.review-slide');
+      const dots = section.querySelectorAll('.review-dots .dot');
+      const wrap = section.querySelector('.review-slider-wrap');
+      const count = section.querySelector('.review-count');
+
+      if (!slider || slides.length === 0) return;
+
+      let current = 0;
+      let intervalId = null;
+      const total = slides.length;
+      const delay = 3000;
+
+      function updateSlider(index) {
+        current = index;
+        slider.style.transform = `translateX(-${current * 100}%)`;
+        
+        if (count) {
+  count.textContent = `${current + 1} / ${total}`;
+}
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === current);
+        });
+      }
+
+      function nextSlide() {
+        const next = (current + 1) % total;
+        updateSlider(next);
+      }
+
+      function startAutoSlide() {
+        stopAutoSlide();
+        intervalId = setInterval(nextSlide, delay);
+      }
+
+      function stopAutoSlide() {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          updateSlider(index);
+          startAutoSlide();
+        });
+      });
+
+      let startX = 0;
+      let endX = 0;
+
+      wrap.addEventListener('touchstart', (e) => {
+        stopAutoSlide();
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      wrap.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+
+        if (diff > 50) {
+          updateSlider((current + 1) % total);
+        } else if (diff < -50) {
+          updateSlider((current - 1 + total) % total);
+        }
+
+        startAutoSlide();
+      }, { passive: true });
+
+      updateSlider(0);
+      startAutoSlide();
+    });
+  })();
+</script>
+
+<script>
+let lastScroll = 0;
+const topBar = document.getElementById('topBar');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 50) {
+    // 아래로 스크롤 → 숨김
+    topBar.classList.add('hide');
+  } else {
+    // 위로 스크롤 → 보임
+    topBar.classList.remove('hide');
+  }
+
+  lastScroll = currentScroll;
+});
+</script>
+
+<script>
+(function () {
+  const popup = document.getElementById('promoPopup');
+  const target = document.querySelector('.review-slider-wrap');
+  const closeBtn = document.querySelector('.popup-close');
+
+  let triggered = false;
+
+  if (!target || !popup) return;
+
+  function checkSection() {
+    const rect = target.getBoundingClientRect();
+
+    if (!triggered && rect.top < window.innerHeight * 0.8) {
+      triggered = true;
+
+      setTimeout(() => {
+        if (!localStorage.getItem('popupClosed')) {
+          popup.classList.add('show');
+        }
+      }, 3000);
+
+      window.removeEventListener('scroll', checkSection);
+    }
+  }
+
+  // 닫기 버튼 이벤트
+  closeBtn.addEventListener('click', function () {
+    popup.classList.remove('show');
+    localStorage.setItem('popupClosed', 'true');
+  });
+
+  window.addEventListener('scroll', checkSection);
+})();
+</script>
+
+
+  
+  
+  <div id="formModal" style="
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+">
+
+  <div style="
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  ">
+
+    
+    <button onclick="closeFormModal()" style="
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: none;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 2;
+      color: #6b7280;
+    ">×</button>
+
+    
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLScS_YhL3IWJ33VnyM98k6x0GOIRf4IbUu0wnPhA2Ki5j3iHdw/viewform?embedded=true"
+      width="100%"
+      height="650"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      style="display:block; border:0;"
+    >
+      로드 중...
+    </iframe>
+
+  </div>
+</div>
+
+
+<script>
+function openFormModal() {
+  document.getElementById('formModal').style.display = 'flex';
+}
+
+function closeFormModal() {
+  document.getElementById('formModal').style.display = 'none';
+}
+
+// 바깥 클릭 시 닫기
+window.addEventListener('click', function (e) {
+  const modal = document.getElementById('formModal');
+  if (e.target === modal) {
+    closeFormModal();
+  }
+});
+</script>
+  
+</body>
+</html>
